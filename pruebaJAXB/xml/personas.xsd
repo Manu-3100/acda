@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            targetNamespace="http://xml.netbeans.org/schema/schema"
+            xmlns:tns="http://xml.netbeans.org/schema/schema"
+            elementFormDefault="qualified">
+    <xsd:element name="Root" type="tns:Root"/>
+    <xsd:complexType name="Root">
+        <xsd:sequence>
+            <xsd:element name="ListaPersona" type="tns:ListaPersona"/>
+            <xsd:element name="ListaNegocio" type="tns:ListaNegocio"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ListaPersona">
+        <xsd:sequence>
+            <xsd:element name="Persona" type="tns:Persona" minOccurs="1" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="Persona">
+        <xsd:sequence>
+            <xsd:element name="nombre" type="xsd:string"/>
+            <xsd:element name="apellido" type="xsd:string"/>
+            <xsd:element name="fechaNacimiento" type="xsd:date"/>
+            <xsd:element name="id" type="xsd:int"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ListaNegocio">
+        <xsd:sequence>
+            <xsd:element name="Negocio" type="tns:Negocio" minOccurs="1" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="Negocio">
+        <xsd:sequence>
+            <xsd:element name="nombre" type="xsd:string"/>
+            <xsd:element name="codigo" type="xsd:int"/>
+        </xsd:sequence>
+    </xsd:complexType>
+</xsd:schema>

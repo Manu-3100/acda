@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<personas>
+ <persona>
+ <nombre>Jaime</nombre>
+ <apellidos>Hablutzel</apellidos>
+ <documento>456789132</documento>
+ </persona>
+ <persona>
+ <nombre>Patricia</nombre>
+ <apellidos>Fernandez</apellidos>
+ <documento>1234589</documento>
+ </persona>
+ <persona>
+ <nombre>Silvester</nombre>
+ <apellidos>Stallone</apellidos>
+ <documento>664433</documento>
+ </persona>
+ <persona>
+ <nombre>Pepe</nombre>
+ <apellidos>Grillo</apellidos>
+ <documento>334455</documento>
+ </persona>
+</personas>

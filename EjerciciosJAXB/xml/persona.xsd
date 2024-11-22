@@ -1,0 +1,21 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="nombre" type="xs:string"/>
+  <xs:element name="apellidos" type="xs:string"/>
+  <xs:element name="documento" type="xs:int"/>
+  <xs:element name="persona">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="nombre"/>
+        <xs:element ref="apellidos"/>
+        <xs:element ref="documento"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="personas">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="persona" maxOccurs="unbounded" minOccurs="0"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
