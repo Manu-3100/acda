@@ -13,8 +13,7 @@ import capaNegocio.*;
 public class Main {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+		
 		try {
 			JAXBContext jaxbContext = JAXBContext.newInstance("capaNegocio");
 			
