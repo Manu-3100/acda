@@ -1,0 +1,17 @@
+{
+  "id" : 1,
+  "name" : "Kevin",
+  "permanent" : true,
+  "address" : {
+    "street" : "C\\ Ángelo Colocci, s/n",
+    "city" : "Lugo",
+    "zipcode" : 27002
+  },
+  "phoneNumbers" : [ 640111222, 650222333 ],
+  "role" : "Programador",
+  "cities" : [ "Lugo", "A Coruña" ],
+  "properties" : {
+    "age" : "20",
+    "salary" : "40000"
+  }
+}

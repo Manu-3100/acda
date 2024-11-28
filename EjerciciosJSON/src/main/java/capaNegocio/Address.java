@@ -4,14 +4,13 @@ public class Address {
 	private String street;
 	private String city;
 	private int zipcode;
-
-	public Address() {
-	}
-
-	public Address(String street, String city, int zipCode) {
+	
+	public Address() {};
+	
+	public Address(String street, String city, int zipcode) {
 		this.street = street;
 		this.city = city;
-		this.zipcode = zipCode;
+		this.zipcode = zipcode;
 	}
 
 	public String getStreet() {
@@ -34,12 +33,14 @@ public class Address {
 		return zipcode;
 	}
 
-	public void setZipcode(int zipCode) {
-		this.zipcode = zipCode;
+	public void setZipcode(int zipcode) {
+		this.zipcode = zipcode;
 	}
 
 	@Override
 	public String toString() {
 		return "Address [street=" + street + ", city=" + city + ", zipcode=" + zipcode + "]";
 	}
+	
+	
 }

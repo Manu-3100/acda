@@ -2,30 +2,36 @@ package capaNegocio;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
 
 public class Empleado {
-
 	private int id;
 	private String name;
 	private boolean permanent;
-	private Address addres;
-	private ArrayList<Integer> numbers = new ArrayList<Integer>();
+	private Address address;
+	private long[] phoneNumbers;
 	private String role;
-	private ArrayList<String> cities = new ArrayList<String>();
-	private Property properties;
+	private List<String> cities;
+	private Map<String, String> properties;
 	
-	public Empleado(int id, String name, boolean permanent, Address addres, ArrayList<Integer> numbers, String role,
-			ArrayList<String> cities, Property properties) {
+	
+	public Empleado() {	
+		
+	}
+	
+	public Empleado(int id, String name, boolean permanent, Address address, ArrayList<Integer> phoneNumbers2, String role,
+			List<String> cities, Map<String, String> properties) {
 		this.id = id;
 		this.name = name;
 		this.permanent = permanent;
-		this.addres = addres;
-		this.numbers = numbers;
+		this.address = address;
+		this.phoneNumbers =  phoneNumbers;
 		this.role = role;
 		this.cities = cities;
 		this.properties = properties;
 	}
-	
+
 	public int getId() {
 		return id;
 	}
@@ -44,17 +50,17 @@ public class Empleado {
 	public void setPermanent(boolean permanent) {
 		this.permanent = permanent;
 	}
-	public Address getAddres() {
-		return addres;
+	public Address getAddress() {
+		return address;
 	}
-	public void setAddres(Address addres) {
-		this.addres = addres;
+	public void setAddress(Address address) {
+		this.address = address;
 	}
-	public ArrayList<Integer> getNumbers() {
-		return numbers;
+	public long[] getPhoneNumbers() {
+		return phoneNumbers;
 	}
-	public void setNumbers(ArrayList<Integer> numbers) {
-		this.numbers = numbers;
+	public void setPhoneNumbers(long[] phoneNumbers) {
+		this.phoneNumbers = phoneNumbers;
 	}
 	public String getRole() {
 		return role;
@@ -62,41 +68,33 @@ public class Empleado {
 	public void setRole(String role) {
 		this.role = role;
 	}
-	public ArrayList<String> getCities() {
+	public List<String> getCities() {
 		return cities;
 	}
-	public void setCities(ArrayList<String> cities) {
+	public void setCities(List<String> cities) {
 		this.cities = cities;
 	}
-	public Property getProperties() {
+	public Map<String, String> getProperties() {
 		return properties;
 	}
-	public void setProperties(Property properties) {
+	public void setProperties(Map<String, String> properties) {
 		this.properties = properties;
-	}
-
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Empleado => id:").append(id).append(", name: ").append(name).append(", permanent: ")
-				.append(permanent).append(", addres: ").append(addres).append(", numbers: ").append(numbers)
-				.append(", role: ").append(role).append(", cities: ").append(cities).append(", properties: ")
-				.append(properties);
-		return builder.toString();
 	}
 	
 	public static Empleado create() {
 		Address address = new Address("C\\ Ángelo Colocci, s/n", "Lugo", 27002);
-		
-		ArrayList<Integer> phoneNumbers = new ArrayList<> (Arrays.asList(666666666, 999999999));
-		ArrayList<String> cities = new ArrayList<> (Arrays.asList("Lugo", "Valencia"));
+		ArrayList<Integer> phoneNumbers = new ArrayList<>(Arrays.asList(888888888, 546546546));
+		ArrayList<String> cities = new ArrayList<>(Arrays.asList("Lugo", "Valencia"));
 		Property properties = new Property("20", "40000");
 		
-		return new Empleado(1, "Kevin", true, address, phoneNumbers, "Programador", cities, properties);
-		
-		
+		return new Empleado(1, "Kevin", true, address, phoneNumbers, "Programador", cities, properties);	
 		
 	}
 	
-	
-}
+	@Override
+	public String toString() {
+		return "Empleado [id=" + id + ", name=" + name + ", permanent=" + permanent + ", address=" + address
+				+ ", phoneNumbers=" + Arrays.toString(phoneNumbers) + ", role=" + role + ", cities=" + cities
+				+ ", properties=" + properties + "]";
+	}
+}	
