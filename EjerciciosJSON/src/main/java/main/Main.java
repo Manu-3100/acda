@@ -24,7 +24,6 @@ public class Main {
 			byte[] jsonData = Files.readAllBytes(Paths.get("target/empleado.json"));
 			ObjectMapper objectMapper = new ObjectMapper();
 			Empleado empleado = objectMapper.readValue(jsonData, Empleado.class);
-			
 			System.out.println(empleado);
 		} catch (IOException e){
 			System.out.println(e.getMessage());
