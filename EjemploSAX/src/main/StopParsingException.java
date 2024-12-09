@@ -7,6 +7,4 @@ public class StopParsingException extends SAXException{
 	public StopParsingException(String message) {
 		super(message);
 	}
-
-	
 }

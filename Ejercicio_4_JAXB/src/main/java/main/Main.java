@@ -28,8 +28,8 @@ public class Main {
 			}
 			
 			Persona humano = new Persona();
-			humano.setNombre("Nadir");
-			humano.setApellidos("Ibn");
+			humano.setNombre("Manuel");
+			humano.setApellidos("Fernandez");
 			humano.setDocumento(43265);
 			
 			personas.getPersona().add(humano);

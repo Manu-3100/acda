@@ -7,10 +7,12 @@ import org.xml.sax.helpers.DefaultHandler;
 public class PriceListHandler extends DefaultHandler {
 	
 	private String nombreCafe;
+	private double precio;
+	
 	private boolean inName;
 	private boolean inMyCoffee;
 	private boolean inPrice;
-	private double precio;
+	
 	
 	
 	public PriceListHandler(String nombreCafe) {
