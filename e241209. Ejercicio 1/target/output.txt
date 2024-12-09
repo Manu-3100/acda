@@ -1,0 +1,5 @@
+Pedido [idCliente=103, idProducto=3, cantidad=2, fecha=2024-12-08]A sido tramitado
+Pedido [idCliente=104, idProducto=1, cantidad=2, fecha=2024-12-09]A sido tramitado
+Pedido [idCliente=101, idProducto=1, cantidad=3, fecha=2024-12-10]A sido tramitado
+Pedido [idCliente=105, idProducto=3, cantidad=1, fecha=2024-12-11]A sido tramitado
+Pedido [idCliente=102, idProducto=2, cantidad=5, fecha=2024-12-12]A sido tramitado

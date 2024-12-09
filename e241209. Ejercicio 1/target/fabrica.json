@@ -1,0 +1,154 @@
+{
+  "productos": [
+    {
+      "id": 1,
+      "nombre": "Mesa de comedor",
+      "piezasConstruccion": [
+        {"material": "Madera", "cantidad": 5, "unidad": "piezasConstruccion"},
+        {"material": "Tornillos", "cantidad": 20, "unidad": "piezasConstruccion"},
+        {"material": "Barniz", "cantidad": 2, "unidad": "litros"}
+      ]
+    },
+    {
+      "id": 2,
+      "nombre": "Silla",
+      "piezasConstruccion": [
+        {"material": "Madera", "cantidad": 3, "unidad": "piezasConstruccion"},
+        {"material": "Tornillos", "cantidad": 10, "unidad": "piezasConstruccion"},
+        {"material": "Barniz", "cantidad": 1, "unidad": "litros"}
+      ]
+    },
+    {
+      "id": 3,
+      "nombre": "Estante",
+      "piezasConstruccion": [
+        {"material": "Madera", "cantidad": 4, "unidad": "piezasConstruccion"},
+        {"material": "Tornillos", "cantidad": 15, "unidad": "piezasConstruccion"},
+        {"material": "Barniz", "cantidad": 1, "unidad": "litros"}
+      ]
+    },
+    {
+      "id": 4,
+      "nombre": "Librero",
+      "piezasConstruccion": [
+        {"material": "Madera", "cantidad": 6, "unidad": "piezasConstruccion"},
+        {"material": "Tornillos", "cantidad": 25, "unidad": "piezasConstruccion"},
+        {"material": "Barniz", "cantidad": 3, "unidad": "litros"}
+      ]
+    },
+    {
+      "id": 5,
+      "nombre": "Escritorio",
+      "piezasConstruccion": [
+        {"material": "Madera", "cantidad": 7, "unidad": "piezasConstruccion"},
+        {"material": "Tornillos", "cantidad": 30, "unidad": "piezasConstruccion"},
+        {"material": "Barniz", "cantidad": 2, "unidad": "litros"}
+      ]
+    },
+    {
+      "id": 6,
+      "nombre": "Banco",
+      "piezasConstruccion": [
+        {"material": "Madera", "cantidad": 2, "unidad": "piezasConstruccion"},
+        {"material": "Tornillos", "cantidad": 8, "unidad": "piezasConstruccion"},
+        {"material": "Barniz", "cantidad": 1, "unidad": "litros"}
+      ]
+    },
+    {
+      "id": 7,
+      "nombre": "Mesa de noche",
+      "piezasConstruccion": [
+        {"material": "Madera", "cantidad": 4, "unidad": "piezasConstruccion"},
+        {"material": "Tornillos", "cantidad": 12, "unidad": "piezasConstruccion"},
+        {"material": "Barniz", "cantidad": 1, "unidad": "litros"}
+      ]
+    },
+    {
+      "id": 8,
+      "nombre": "Armario",
+      "piezasConstruccion": [
+        {"material": "Madera", "cantidad": 10, "unidad": "piezasConstruccion"},
+        {"material": "Tornillos", "cantidad": 40, "unidad": "piezasConstruccion"},
+        {"material": "Barniz", "cantidad": 5, "unidad": "litros"}
+      ]
+    },
+    {
+      "id": 9,
+      "nombre": "Cabecero de cama",
+      "piezasConstruccion": [
+        {"material": "Madera", "cantidad": 3, "unidad": "piezasConstruccion"},
+        {"material": "Barniz", "cantidad": 1, "unidad": "litros"}
+      ]
+    },
+    {
+      "id": 10,
+      "nombre": "Taburete",
+      "piezasConstruccion": [
+        {"material": "Madera", "cantidad": 2, "unidad": "piezasConstruccion"},
+        {"material": "Tornillos", "cantidad": 6, "unidad": "piezasConstruccion"}
+      ]
+    }
+  ],
+  "materiales": [
+    {
+      "nombre": "Madera",
+      "unidad": "pieza",
+      "costoPorUnidad": 15.0, 
+      "stock": 40
+    },
+    {
+      "nombre": "Tornillos",
+      "unidad": "pieza",
+      "costoPorUnidad": 0.2,
+      "stock": 140
+    },
+    {
+      "nombre": "Barniz",
+      "unidad": "litro",
+      "costoPorUnidad": 25.0,
+      "stock": 15
+    },
+    {
+      "nombre": "Pegamento",
+      "unidad": "litro",
+      "costoPorUnidad": 8.0,
+      "stock": 100
+    },
+    {
+      "nombre": "Vidrio",
+      "unidad": "metro cuadrado",
+      "costoPorUnidad": 40.0,
+      "stock": 10
+    },
+    {
+      "nombre": "Bisagras",
+      "unidad": "pieza",
+      "costoPorUnidad": 2.5,
+      "stock": 400
+    },
+    {
+      "nombre": "Clavos",
+      "unidad": "pieza",
+      "costoPorUnidad": 0.1,
+      "stock": 500
+    },
+    {
+      "nombre": "Pintura",
+      "unidad": "litro",
+      "costoPorUnidad": 18.0,
+      "stock": 10
+    },
+    {
+      "nombre": "Tapiz",
+      "unidad": "metro",
+      "costoPorUnidad": 12.0,
+      "stock": 50
+    },
+    {
+      "nombre": "Espuma",
+      "unidad": "metro cúbico",
+      "costoPorUnidad": 30.0,
+      "stock": 40
+    }
+  ]
+}

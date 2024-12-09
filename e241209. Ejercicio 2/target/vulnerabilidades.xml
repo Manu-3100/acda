@@ -1,0 +1,34 @@
+<libraries>
+	<library>
+		<name>postgresql</name>
+		<version>42.5.0</version>
+	</library>
+	<library>
+		<name>postgresql</name>
+		<version>41.0.0</version>
+	</library>
+	<library>
+		<name>postgresql</name>
+		<version>40.0.0</version>
+	</library>
+	<library>
+		<name>com.fasterxml.jackson.core</name>
+		<version>2.12.0</version>
+	</library>
+	<library>
+		<name>jackson-databind</name>
+		<version>2.13.4</version>
+	</library>
+	<library>
+		<name>junit</name>
+		<version>4.13</version>
+	</library>
+	<library>
+		<name>junit</name>
+		<version>4.0</version>
+	</library>
+	<library>
+		<name>junit</name>
+		<version>3.9</version>
+	</library>
+</libraries>
