@@ -1,0 +1,35 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://maven.apache.org/POM/4.0.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="groupId" type="xs:string"/>
+  <xs:element name="artifactId" type="xs:string"/>
+  <xs:element name="version" type="xs:string"/>
+  <xs:element name="scope" type="xs:string"/>
+  <xs:element name="dependency">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="ns:groupId" xmlns:ns="http://maven.apache.org/POM/4.0.0"/>
+        <xs:element ref="ns:artifactId" xmlns:ns="http://maven.apache.org/POM/4.0.0"/>
+        <xs:element ref="ns:version" xmlns:ns="http://maven.apache.org/POM/4.0.0"/>
+        <xs:element ref="ns:scope" minOccurs="0" xmlns:ns="http://maven.apache.org/POM/4.0.0"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="modelVersion" type="xs:string"/>
+  <xs:element name="dependencies">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="ns:dependency" maxOccurs="unbounded" minOccurs="0" xmlns:ns="http://maven.apache.org/POM/4.0.0"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="project">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="ns:modelVersion" xmlns:ns="http://maven.apache.org/POM/4.0.0"/>
+        <xs:element ref="ns:groupId" xmlns:ns="http://maven.apache.org/POM/4.0.0"/>
+        <xs:element ref="ns:artifactId" xmlns:ns="http://maven.apache.org/POM/4.0.0"/>
+        <xs:element ref="ns:version" xmlns:ns="http://maven.apache.org/POM/4.0.0"/>
+        <xs:element ref="ns:dependencies" xmlns:ns="http://maven.apache.org/POM/4.0.0"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

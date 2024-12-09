@@ -1,3 +1,4 @@
+use northwind;
 -- Ejercicio 1
 Select ProductName from products order by UnitPrice desc limit 1;
 
@@ -123,5 +124,31 @@ Select customers.CompanyName, count(orders.OrderID), sum(UnitPrice) from custome
         where ShipCountry = "Spain"
         group by CompanyName;
         
--- Ejercicio 26
-select LastName from employees where (Select * from employees where ) ;
+-- Ejercicio 26        
+select employees.FirstName, idJefe.FirstName from employees, (select FirstName, EmployeeID from employees) as idJefe 
+		where ReportsTo = idJefe.EmployeeID
+        group by employees.EmployeeID;
+        
+-- Ejercicio 27
+SELECT case when (SELECT COUNT(*) FROM employees
+                        INNER JOIN
+							employeeterritories ON employeeterritories.EmployeeID = employees.EmployeeID
+                        INNER JOIN
+							territories ON employeeterritories.TerritoryID = territories.TerritoryID
+					WHERE employees.City = 'Tacoma' AND territories.TerritoryDescription = 'Boston') > 0
+        THEN
+            'Si'
+        ELSE 'No'
+    END AS resultado;
+
+-- Ejercicio 28
+select employees.Firstname, count(orders.OrderID) from employees 
+	inner join orders on employees.EmployeeID = orders.EmployeeID
+    group by employees.Firstname;
+
+-- Ejercicio 29
+select ShipCity, count(*) as cantidad from orders group by ShipCity order by cantidad desc limit 3;
+
+-- Ejercicio 30
+
+
