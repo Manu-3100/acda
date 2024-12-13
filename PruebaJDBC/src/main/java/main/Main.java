@@ -1,44 +1,21 @@
 package main;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.security.NoSuchAlgorithmException;
+
+import capaNegocio.*;
+import generico.Cifrado;
 
 public class Main {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws NoSuchAlgorithmException {
 
-		String url = "jdbc:mysql://localhost:3306/Northwind";
-		String usuario = "root";
-		String password = "";
+		// Customer.getCustomers().forEach(System.out::println);
 		
-		try (Connection con = DriverManager.getConnection(url, usuario, password); 
-			 Statement stmt = con.createStatement();) {
-			
-			String companyName = "' or 1=1; --";
-			String contactName = "Maria Anders";
-			
-			try (ResultSet rs = stmt.executeQuery(
-				"Select count(*) " +
-				"from customers " +
-				"where CompanyName = '" + companyName + "' and " + 
-				"ContactName = '" + contactName + "'" ); ){						
-			
-			rs.next();
-			if (rs.getInt(1) != 0) {
-				System.out.println("Error de validación");
-			}
-			else
-				System.out.println("Validación correcta");
-			} catch (SQLException e) {
-				System.err.println(e.getMessage());
-			}
-		} catch (SQLException e) {
-			System.out.println(e.getMessage());
-		}
+		// Customer.getCustomers().forEach(System.out::println);
+		
+		// Cifrado.grabarKey(Cifrado.generatekey());
+		
+		// System.out.println(Cifrado.getSecretKeyAsText(Cifrado.leerKey()));
 		
 	}
-
 }
