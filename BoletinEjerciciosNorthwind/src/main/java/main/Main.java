@@ -7,7 +7,7 @@ public class Main {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-		Customer.getCustomersByCountry("Spain").forEach(System.out::println);
+		Customer.getCustomersByCountry("Spain", 30).forEach(System.out::println);
 		
 	}
 
