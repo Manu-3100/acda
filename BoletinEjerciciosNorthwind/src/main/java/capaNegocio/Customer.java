@@ -49,11 +49,11 @@ public class Customer {
 
 		List<Customer> customers = new ArrayList<Customer>();
 
-		String consulta = "Select companyName, contactName \n"
-				+ "	from customers \n"
-				+ "    inner join orders on orders.CustomerID = customers.CustomerID\n"
-				+ "    inner join orderdetails on orderdetails.OrderID = orders.OrderID\n"
-				+ "	where country=\"Spain\" and UnitPrice * Quantity * (1- Discount) > 30 group by CompanyName;";
+		String consulta = "Select companyName, contactName from customers"
+							+ " inner join orders on orders.CustomerID = customers.CustomerID"
+							+ " inner join orderdetails on orderdetails.OrderID = orders.OrderID"
+							+ "	where country= \"Spain\" "
+								+ " and UnitPrice * Quantity * (1 - Discount) > 30 group by CompanyName;";
 		
 		try (Connection con = Conexion.getConexion();
 				PreparedStatement pstmt = con.prepareStatement("Select companyName, contactName " + "from customers " + "where country=?");) {
