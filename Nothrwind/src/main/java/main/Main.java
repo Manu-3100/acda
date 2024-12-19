@@ -21,6 +21,9 @@ public class Main {
 		
 		// Northwind.getProducts(2).forEach(System.out::println);
 		
+		// Ejercicio 5
+		System.out.println(Northwind.addEmployeeF("jodete", "acepta"));
+		
 		// Ejercicio 8
 		// Northwind.addEmployee("Nadir", "Ibn Salah");
 		// Northwind.removeEmployee(11);

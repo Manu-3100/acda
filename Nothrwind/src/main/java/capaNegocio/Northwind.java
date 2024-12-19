@@ -104,8 +104,8 @@ public class Northwind {
 		}
 		return res;
 	}
-	// Ejercicio 4
-
+	
+	
 	// Ejercicio 5
 	public static int addEmployee(String nombre, String apellidos) {
 		int res = 0;
@@ -127,6 +127,47 @@ public class Northwind {
 		return res;
 	}
 
+	// Ejercicio 5
+	// Procedimiento Almacenado
+	public static int addEmployeePA(String nombre, String apellidos) {
+		int res = -1;
+		try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost/Northwind", "root", "");
+				CallableStatement cstmt = con.prepareCall("{call addEmployee(?, ?, ?)}");) {
+
+			cstmt.setString(1, nombre);
+			cstmt.setString(2, apellidos);
+			cstmt.registerOutParameter(3, Types.INTEGER);
+			cstmt.executeUpdate();
+
+			res = cstmt.getInt(3);
+
+			} catch (SQLException e) {
+				System.err.println(e.getMessage());
+			}
+			return res;
+		}
+	
+	// Ejercicio 5
+	// Función
+	public static int addEmployeeF(String nombre, String apellidos) {
+		int filas = -1;
+		try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost/Northwind", "root", "");
+				CallableStatement cstmt = con.prepareCall("{?=addEmployee(?, ?}")) {
+			
+			cstmt.registerOutParameter(1, Types.INTEGER);
+			cstmt.setString(2, nombre);
+			cstmt.setString(3, apellidos);
+			
+			cstmt.execute();
+			filas = cstmt.getInt(1);
+
+		} catch (SQLException e) {
+			System.err.println(e.getMessage());
+		}
+		return filas;
+	}
+	
+	// Ejercicio 6
 	public static int addEmployee2(Employee empleado) {
 		int res = 0;
 		try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost/Northwind", "root", "");
@@ -139,7 +180,7 @@ public class Northwind {
 			pstmt.setString(3, empleado.getTitleOfCourtesy());
 			pstmt.setString(4, empleado.getCity());
 
-			pstmt.executeUpdate();
+			pstmt.execute();
 
 			ResultSet rs = pstmt.getGeneratedKeys();
 			rs.next();
@@ -168,7 +209,6 @@ public class Northwind {
 			while (rs.next()) {
 				res.add(new Product(rs.getString(1), rs.getDouble(2)));
 			}
-
 		} catch (SQLException e) {
 			System.err.println(e.getMessage());
 		}
@@ -190,6 +230,9 @@ public class Northwind {
 		}
 	}
 
+	
+	// Ejercicio 9
+	// Igual que el anterior, pero devolviendo el número de filas afectadas
 	public static int removeEmployeeConNumeroFilas(int id) {
 		int filas = -1;
 		try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost/Northwind", "root", "");
@@ -206,5 +249,6 @@ public class Northwind {
 		}
 		return filas;
 	}
+	
 
 }
