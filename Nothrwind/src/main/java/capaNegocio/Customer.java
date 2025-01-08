@@ -3,6 +3,7 @@ package capaNegocio;
 public class Customer {
 	private String companyName;
 	private String contactName;
+	private int id;
 
 	public Customer() {
 	}
@@ -10,6 +11,12 @@ public class Customer {
 	public Customer(String companyName, String contactName) {
 		this.companyName = companyName;
 		this.contactName = contactName;
+	}
+	
+	public Customer(String companyName, String contactName, int id) {
+		this.companyName = companyName;
+		this.contactName = contactName;
+		this.id = id;
 	}
 
 	public String getCompanyName() {

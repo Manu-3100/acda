@@ -1,5 +1,10 @@
 package main;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
 import capaNegocio.Employee;
 import capaNegocio.Northwind;
 
@@ -22,7 +27,7 @@ public class Main {
 		// Northwind.getProducts(2).forEach(System.out::println);
 		
 		// Ejercicio 5
-		System.out.println(Northwind.addEmployeeF("jodete", "acepta"));
+		// System.out.println(Northwind.addEmployeeF("jodete", "acepta"));
 		
 		// Ejercicio 8
 		// Northwind.addEmployee("Nadir", "Ibn Salah");
@@ -32,7 +37,14 @@ public class Main {
 		
 		// System.out.println(Northwind.removeEmployeeConNumeroFilas(13));
 		
-		
+		// Ejercicio 10
+		for (Map.Entry<String, List<String>> entry : Northwind.clientsUnitedPackageConfechas().entrySet()) {
+			System.out.print(entry.getKey() + " ");
+			 for(String fecha : entry.getValue() ) {
+				 System.out.print(fecha + " ");
+			 }
+			 System.out.println();
+		}
 		
 	}
 	

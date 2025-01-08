@@ -9,7 +9,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Northwind {
 
@@ -197,9 +199,8 @@ public class Northwind {
 	// todos sus
 	// productos en forma de objetos.
 	public static List<Product> getProducts(int id) {
-
+		
 		List<Product> res = new ArrayList<Product>();
-
 		try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost/Northwind", "root", "");
 				PreparedStatement pstmt = con
 						.prepareStatement("Select ProductName, UnitPrice from products where SupplierID = ?")) {
@@ -250,5 +251,15 @@ public class Northwind {
 		return filas;
 	}
 	
-
+	// Ejercicio 10
+	public static List<String> actualizarCliente(){
+		
+		
+	}
 }
+
+
+
+
+
+
