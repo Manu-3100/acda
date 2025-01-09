@@ -10,3 +10,12 @@ BEGIN
 	WHERE customerID = clave;
 END $$
 Delimiter ;
+
+-- Ejercicio 11
+DELIMITER $$
+Create PROCEDURE getProduct(id int)
+BEGIN
+	Select ProductName from products
+		where ProductID = id;
+END $$
+Delimiter ;

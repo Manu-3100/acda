@@ -7,6 +7,7 @@ import java.util.Map;
 
 import capaNegocio.Employee;
 import capaNegocio.Northwind;
+import capaNegocio.Product;
 
 public class Main {
 
@@ -38,13 +39,28 @@ public class Main {
 		// System.out.println(Northwind.removeEmployeeConNumeroFilas(13));
 		
 		// Ejercicio 10
-		for (Map.Entry<String, List<String>> entry : Northwind.clientsUnitedPackageConfechas().entrySet()) {
-			System.out.print(entry.getKey() + " ");
-			 for(String fecha : entry.getValue() ) {
-				 System.out.print(fecha + " ");
-			 }
-			 System.out.println();
-		}
+//		for (Map.Entry<String, List<String>> entry : Northwind.clientsUnitedPackageConfechas().entrySet()) {
+//			System.out.print(entry.getKey() + " ");
+//			 for(String fecha : entry.getValue() ) {
+//				 System.out.print(fecha + " ");
+//			 }
+//			 System.out.println();
+//		}
+		
+		// Ejercicio 11
+//		int id = 1;
+//		Product p = Northwind.getProduct(id);
+//		if(p != null) {
+//			System.out.println(p);
+//		} else
+//			System.out.println("no existe");
+//		
+		// Ejercicio 12
+		
+		System.out.println(Northwind.incrementoPrecioPorCategoria(1, 0.1));
+		
+		
+		
 		
 	}
 	

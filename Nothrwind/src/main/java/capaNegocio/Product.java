@@ -2,8 +2,14 @@ package capaNegocio;
 
 public class Product {
 
+	private int id;
 	private String name;
 	private double unitPrice;
+	
+	public Product(int id, String name) {
+		this.id = id;
+		this.name = name;
+	}
 	
 	public Product(String name, double unitPrice) {
 		this.name = name;

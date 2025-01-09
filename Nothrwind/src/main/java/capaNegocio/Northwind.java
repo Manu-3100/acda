@@ -252,10 +252,70 @@ public class Northwind {
 	}
 	
 	// Ejercicio 10
-	public static List<String> actualizarCliente(){
+	// public static List<String> actualizarCliente(){
 		
 		
+	// }
+	
+	// Ejercicio 11
+	
+	public static Product getProduct(int productID) {
+		Product producto = null;
+		
+		try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost/Northwind", "root", "");
+				CallableStatement cstmt = con.prepareCall("{call getProduct(?)}")) {
+			
+			cstmt.setInt(1, productID);	
+			cstmt.execute();
+		
+			ResultSet rs = cstmt.getResultSet();
+			
+			if (rs.next()) {
+				producto = new Product(productID, rs.getString(1));
+			}
+			
+		} catch (SQLException e) {
+			System.err.println(e.getMessage());
+		}
+		return producto;
 	}
+
+	// Ejercicio 12
+	public static int incrementoPrecioPorCategoria(int categoryID, double porcentaje) {
+		int filasAfectadas = 0;
+		Connection con = null;
+		try {
+			con = DriverManager.getConnection("jdbc:mysql://localhost/Northwind", "root", "");
+			PreparedStatement pstmt = con.prepareStatement(
+						"update Products " + 
+						"set unitPrice = unitPrice / (1 + ?) " +
+						" where categoryID = ?");
+			con.setAutoCommit(false);
+			pstmt.setDouble(1, porcentaje);
+			pstmt.setInt(2, categoryID);
+			
+			filasAfectadas = pstmt.executeUpdate();
+			con.commit();
+			
+		} catch (SQLException e) {
+			try {
+				con.rollback();
+			} catch (SQLException e1) {
+				System.err.println(e1.getMessage());
+			}
+			System.err.println(e.getMessage());
+		} finally {
+			try {
+				con.setAutoCommit(true);
+				con.close();
+			} catch (SQLException e) {
+				System.err.println(e.getMessage());
+			}
+		}
+		return filasAfectadas;
+	}
+	
+	
 }
 
 
