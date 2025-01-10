@@ -4,6 +4,7 @@ import java.sql.Statement;
 import java.sql.Types;
 import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -315,6 +316,29 @@ public class Northwind {
 		return filasAfectadas;
 	}
 	
+	// Ejercicio 13
+	public static void getDatosGenerales() {
+		
+		try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost/Northwind", "root", "")) {
+			DatabaseMetaData metadata = con.getMetaData();
+			
+			System.out.println("Usuario de base de datos " + metadata.getUserName());
+			System.out.println("Driver usado " + metadata.getDriverName() + "version: " + metadata.getDriverVersion());
+			System.out.println("Gestor de base de datos " + metadata.getDatabaseProductName());
+		
+		} catch (SQLException e) {
+			System.err.println(e.getMessage());
+		}
+	}
+	
+	public static void getTablasYVistas() {
+		try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost/Northwind", "root", "")) {
+			DatabaseMetaData metadata = con.getMetaData();
+						
+		} catch (SQLException e) {
+			System.err.println(e.getMessage());
+		}
+	}
 	
 }
 

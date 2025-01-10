@@ -55,12 +55,14 @@ public class Main {
 //		} else
 //			System.out.println("no existe");
 //		
-		// Ejercicio 12
+		// Ejercicio 12	
+		// System.out.println(Northwind.incrementoPrecioPorCategoria(1, 0.1));
 		
-		System.out.println(Northwind.incrementoPrecioPorCategoria(1, 0.1));
+		// Ejercicio 13
+		// Northwind.getDatosGenerales();
 		
-		
-		
+		// Ejercicio 14
+		Northwind.getTablasYVistas();
 		
 	}
 	
