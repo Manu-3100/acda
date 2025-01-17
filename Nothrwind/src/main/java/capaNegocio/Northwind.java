@@ -8,6 +8,7 @@ import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -331,15 +332,121 @@ public class Northwind {
 		}
 	}
 	
+	// ejercicio 14
 	public static void getTablasYVistas() {
 		try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost/Northwind", "root", "")) {
 			DatabaseMetaData metadata = con.getMetaData();
-						
+			
+			ResultSet rs = metadata.getTables("northwind", null, null , null);
+			String res;
+			while (rs.next()) {
+				if (rs.getString("TABLE_TYPE").equals("TABLE")) {
+					res = "Tabla ";
+				}
+				else if (rs.getString("TABLE_TYPE").equals("VIEW")){
+					res = "Vista ";
+				}
+				else {
+					res = "otro";
+				}
+				res += rs.getString("TABLE_NAME");
+				System.out.println(res);
+			}
+			
 		} catch (SQLException e) {
 			System.err.println(e.getMessage());
 		}
 	}
 	
+	// ejercicio 15
+	public static void getProcedimientosYFunciones() {
+		try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost/Northwind", "root", "")) {
+			DatabaseMetaData metadata = con.getMetaData();
+			
+			ResultSet rs = metadata.getProcedures("northwind", null , null);
+			String res;
+			while (rs.next()) {
+				
+				if (rs.getShort("PROCEDURE_TYPE") == 1) {
+					res = "Procedimiento -> ";
+				}
+				else if (rs.getShort("PROCEDURE_TYPE") == 2) {
+					res = "Función -> ";
+				}
+				else {
+					res = "desconocido";
+				}
+				res += rs.getString("PROCEDURE_NAME");
+				System.out.println(res);	
+			}
+		} catch (SQLException e) {
+			System.err.println(e.getMessage());
+		}
+	}
+	
+	// Ejercicio 16
+	public static void getDatosTabla(String tabla) {
+		try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost/Northwind", "root", "")) {
+			DatabaseMetaData metadata = con.getMetaData();
+			ResultSet rs = metadata.getColumns("Northwind", null, tabla, null);
+			
+			while (rs.next()) {
+				System.out.println(
+						rs.getString("COLUMN_NAME") + " " +
+						rs.getString("TYPE_NAME") + " " +
+						rs.getInt("COLUMN_SIZE") );
+				
+				if (rs.getInt("NULLABLE") == ResultSetMetaData.columnNoNulls) {
+					System.out.println("No admite nulos");
+				}
+				else if (rs.getInt("NULLABLE") == ResultSetMetaData.columnNullable) {
+					System.out.println("Si admite nulos");
+				}
+				else {
+					System.out.println("Se desconoce si admite nulos");
+				}
+			}
+			
+		} catch (SQLException e) {
+			System.err.println(e.getMessage());
+		}
+	}
+	// Ejercicio 17
+	public static void getPrimaryKey(String tabla) {
+		try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost/Northwind", "root", "")) {
+			DatabaseMetaData metadata = con.getMetaData();
+			ResultSet rs = metadata.getPrimaryKeys("Northwind", null , null);
+			
+			
+		} catch (SQLException e) {
+			System.err.println(e.getMessage());
+		}
+	}
+	
+	// Ejercicio 18
+	public static void getForeingKey(String tabla) {
+		try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost/Northwind", "root", "")) {
+			DatabaseMetaData metadata = con.getMetaData();
+			ResultSet rs = metadata.getExportedKeys("Northwind", null , tabla);
+			
+			
+		} catch (SQLException e) {
+			System.err.println(e.getMessage());
+		}
+	}
+	
+	// Ejercicio 19
+	public static void getInfoConsulta(String tabla) {
+		try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost/Northwind", "root", "");
+			 Statement stmt = con.createStatement();) {
+			
+			
+		} catch (SQLException e) {
+			System.err.println(e.getMessage());
+		}
+	}
+
+
 }
 
 

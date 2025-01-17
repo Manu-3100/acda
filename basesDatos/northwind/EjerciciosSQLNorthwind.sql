@@ -19,3 +19,16 @@ BEGIN
 		where ProductID = id;
 END $$
 Delimiter ;
+
+delimiter $$
+CREATE FUNCTION clientesPais (pais varchar(15))
+RETURNS int
+deterministic
+BEGIN
+	declare contador int;
+    set contador = (select count(*) from customers where country = pais);
+    return contador;
+END$$
+delimiter ;
+
+

@@ -62,8 +62,13 @@ public class Main {
 		// Northwind.getDatosGenerales();
 		
 		// Ejercicio 14
-		Northwind.getTablasYVistas();
+		// Northwind.getTablasYVistas();
 		
+		// Ejercicio 15
+		//Northwind.getProcedimientosYFunciones();
+		
+		// Ejercicio 16
+		Northwind.getDatosTabla("customers");
 	}
 	
 	
