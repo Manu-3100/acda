@@ -29,7 +29,6 @@ CREATE TABLE doente (
   PRIMARY KEY (doe_numhistoria)
 ) ENGINE=InnoDB AUTO_INCREMENT=467 DEFAULT CHARSET=latin1;
 
-
 --
 -- Dumping data for table `doente`
 --

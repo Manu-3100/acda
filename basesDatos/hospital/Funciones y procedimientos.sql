@@ -1,5 +1,5 @@
 delimiter $$
-CREATE FUNCTION `estatistica_medico`(medico int) RETURNS int(11) deterministic
+CREATE FUNCTION `estatistica_medico`(medico int) RETURNS int deterministic
 begin
   declare n int;
   select count(distinct i.ing_nhdoente) into n from ingreso i
@@ -8,7 +8,7 @@ begin
   return n;
 end $$
 
-CREATE FUNCTION `existeHabitacion`(hab_numero INT) RETURNS tinyint(1) deterministic
+CREATE FUNCTION `existeHabitacion`(hab_numero INT) RETURNS tinyint deterministic
 BEGIN
 	Declare contador Int;
     
@@ -19,7 +19,7 @@ BEGIN
     RETURN contador = 1;
 END $$
 
-CREATE FUNCTION `existePaciente`(doe_numhistoria INT) RETURNS tinyint(1) deterministic
+CREATE FUNCTION `existePaciente`(doe_numhistoria INT) RETURNS tinyint deterministic
 BEGIN
 	Declare contador Int;
     
@@ -30,7 +30,7 @@ BEGIN
 	return contador = 1;
 END $$
 
-CREATE FUNCTION `hayCamaLibre`(hab_numero INT) RETURNS tinyint(1) deterministic
+CREATE FUNCTION `hayCamaLibre`(hab_numero INT) RETURNS tinyint deterministic
 BEGIN
 	DECLARE contador INT;
     DECLARE numCamas INT;
@@ -55,5 +55,16 @@ BEGIN
     
 	RETURN numCamas > camasOcupadas;
 END $$
+
+CREATE FUNCTION estaIngresado(doe_numHistoria INT) RETURNS boolean DETERMINISTIC
+BEGIN
+    Declare alta varchar(45);
+    SELECT ing_dataalta INTO alta 
+    FROM Ingreso 
+	where ing_nhdoente = doe_numHistoria and 
+		  ing_dataalta is null;
+        
+    return alta is null;
+END$$
 
 delimiter ;
