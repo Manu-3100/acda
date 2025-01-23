@@ -111,7 +111,12 @@ public class Doente {
 	}
 
 	public enum ESTADO {
-		NOEXISTEPACIENTE, NOESTAINGRESADO, NOEXISTEHABITACION, NOHAYSITIOHABITACION, ERRORBD, OK
+		NOEXISTEPACIENTE, 
+		NOESTAINGRESADO, 
+		NOEXISTEHABITACION, 
+		NOHAYSITIOHABITACION, 
+		ERRORBD, 
+		OK
 	}
 
 	public static ESTADO hacerIngreso2(int paciente, LocalDate fecha, int habitacion) {
@@ -196,7 +201,7 @@ public class Doente {
 			cstmt.registerOutParameter(1, Types.BOOLEAN);
 			cstmt.execute();
 
-			res = cstmt.getBoolean(1);
+			res = cstmt.getInt(1) == 1;
 
 		} catch (SQLException e) {
 			System.err.println(e.getMessage());

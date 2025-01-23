@@ -58,13 +58,21 @@ END $$
 
 CREATE FUNCTION estaIngresado(doe_numHistoria INT) RETURNS boolean DETERMINISTIC
 BEGIN
-    Declare alta varchar(45);
-    SELECT ing_dataalta INTO alta 
-    FROM Ingreso 
-	where ing_nhdoente = doe_numHistoria and 
-		  ing_dataalta is null;
-        
-    return alta is null;
+    
+    declare contador int;
+    select count(*) into contador from ingreso
+		where ing_nhdoente = doe_numHistoria and
+				ing_dataalta is null;
+	return contador > 0;
 END$$
 
+CREATE PROCEDURE pacientesPorMedico(medico int)
+BEGIN
+SELECT DISTINCT doe_numhistoria, doe_nome, doe_datanac FROM doente D
+	INNER JOIN ingreso I 
+		on d.doe_numhistoria = I.ing_nhdoente
+    INNER JOIN tratamento T 
+		on I.ing_id = T.tra_idingreso
+	WHERE T.tra_codigomedico = medico;
+END $$
 delimiter ;

@@ -4,6 +4,9 @@ use hospital;
 
 Select * from doente;
 select * from habitacion;
-select * from ingreso;
+select * from habitacion where ing_nhdoente = 467;
 
-SELECT ing_dataalta FROM Ingreso where ing_nhdoente = 101 order by ing_dataingreso;
+insert into doente (doe_nome) values ("nadir");
+insert into habitacion (hab_numero, hab_numcamas) values (353, 2);
+
+
