@@ -15,6 +15,48 @@ public class Paciente {
 	private String doe_nome;
 	private LocalDate doe_datanac;
 	
+	public Paciente (int doe_numHistoria, String doe_nome, LocalDate doe_datanac) {
+		this.doe_numHistoria = doe_numHistoria;
+		this.doe_nome = doe_nome;
+		this.doe_datanac = doe_datanac;
+	}
+	
+	public int getDoe_numHistoria() {
+		return doe_numHistoria;
+	}
+
+	public void setDoe_numHistoria(int doe_numHistoria) {
+		this.doe_numHistoria = doe_numHistoria;
+	}
+
+	public String getDoe_nome() {
+		return doe_nome;
+	}
+
+	public void setDoe_nome(String doe_nome) {
+		this.doe_nome = doe_nome;
+	}
+
+	public LocalDate getDoe_datanac() {
+		return doe_datanac;
+	}
+
+	public void setDoe_datanac(LocalDate doe_datanac) {
+		this.doe_datanac = doe_datanac;
+	}
+	
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Paciente => ");
+		builder.append(doe_numHistoria);
+		builder.append(", nome => ");
+		builder.append(doe_nome);
+		builder.append(", data nacemento => ");
+		builder.append(doe_datanac);
+		return builder.toString();
+	}
+
 	public enum ESTADO {
 		NOEXISTEPACIENTE,
 		NOEXISTEHABITACION,
@@ -32,20 +74,6 @@ public class Paciente {
 			cstmt.execute();
 			
 			res = cstmt.getInt(1) == 1;
-		} catch (SQLException e) {
-			System.out.println(e.getMessage());
-		}
-		return res;
-	}
-	
-	public static boolean yaIngresado(Connection con, int paciente) {
-		boolean res = false;
-		try (CallableStatement cstmt = con.prepareCall("{? = call estaIngresado(?)}")){
-			cstmt.setInt(2, paciente);
-			cstmt.registerOutParameter(1, Types.BOOLEAN);
-			cstmt.execute();
-
-			res = cstmt.getBoolean(1);
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}
@@ -164,4 +192,65 @@ public class Paciente {
 		
 		return estado;
 	}
+	
+	public static boolean yaIngresado(Connection con, int paciente) {
+		boolean res = false;
+		try (CallableStatement cstmt = con.prepareCall("{? = call estaIngresado(?)}")){
+			cstmt.setInt(2, paciente);
+			cstmt.registerOutParameter(1, Types.BOOLEAN);
+			cstmt.execute();
+
+			res = cstmt.getBoolean(1);
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		return res;
+	}
+	
+	public static boolean borrarPaciente (int paciente) {
+		
+		Connection con = null;
+		boolean estado = true;
+		
+		try {
+			con = DriverManager.getConnection("jdbc:mysql://localhost/Hospital", "root", "");
+			
+			con.setAutoCommit(false);
+			PreparedStatement pstmt = con.prepareStatement("delete from tratamento where tra_idingreso IN "
+														 + "(Select ing_id from ingreso "
+														 		+ "inner join doente "
+														 			+ "on ing_nhdoente = doe_numhistoria "
+														 		+ "where ing_nhdoente = 467 );");
+			
+			pstmt.execute();
+			
+			pstmt = con.prepareStatement("delete from ingreso where ing_nhdoente = 467;");
+			pstmt.execute();
+			
+			
+			
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+			estado = false;
+			try {
+				con.rollback();
+			} catch (SQLException e1) {
+				System.out.println(e1.getMessage());
+			}
+		} finally {
+			try {
+				con.setAutoCommit(true);
+				con.close();
+			} catch(SQLException e) {
+				System.out.println(e.getMessage());
+			}
+		}
+		
+		return estado;
+		
+		
+	}
+	
+	
+	
 }
