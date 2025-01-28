@@ -14,7 +14,7 @@ public class ClassToJSON {
 
 		ObjectMapper objectMapper = new ObjectMapper();
 		
-		Car car = new Car("red", "Skoda");
+		Car car = new Car("blue", "Skoda");
 		
 		objectMapper.configure(SerializationFeature.INDENT_OUTPUT, true);
 		try {
