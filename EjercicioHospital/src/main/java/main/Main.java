@@ -1,12 +1,15 @@
 package main;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.time.LocalDate;
 
 import capaNegocio.*;
 
 public class Main {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws SQLException {
 //		Paciente.ESTADO estado = Paciente.hacerIngreso2(467, LocalDate.now(), 353);
 //		if (estado == Paciente.ESTADO.NOEXISTEPACIENTE)
 //			System.out.println("No existe el paciente");
@@ -21,7 +24,14 @@ public class Main {
 //		else
 //			System.out.println("Paciente ingresado correctamente");
 		
-		Medico.estadisticasMedico(1).forEach(System.out::println);
+		// Medico.estadisticasMedico(1).forEach(System.out::println);
+		
+		if(Paciente.borrar(2))
+			System.out.println("Paciente Borrado");
+		else
+			System.out.println("Error en el borrado");
+
+		
 	}
 
 }

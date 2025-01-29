@@ -66,7 +66,7 @@ public class Paciente {
 		OK
 	}
 	
-	public static boolean existe(Connection con, int paciente) {
+	public static boolean existePaciente(Connection con, int paciente) {
 		boolean res = false;
 		try (CallableStatement cstmt = con.prepareCall("{? = call existePaciente(?)}")){
 			cstmt.setInt(2, paciente);
@@ -90,7 +90,7 @@ public class Paciente {
 			
 			con.setAutoCommit(false);
 			
-			if (existe(con, paciente) 				&&
+			if (existePaciente(con, paciente) 				&&
 				Habitacion.existe(con, habitacion)	&&
 				Habitacion.haySitio(con, habitacion)) {
 				
@@ -146,7 +146,7 @@ public class Paciente {
 			
 			con.setAutoCommit(false);
 			
-			if (!existe(con, paciente))
+			if (!existePaciente(con, paciente))
 				estado = ESTADO.NOEXISTEPACIENTE;
 			else if (Paciente.yaIngresado(con, paciente))
 				estado = ESTADO.PACIENTEYAINGRESADO;
@@ -207,7 +207,7 @@ public class Paciente {
 		return res;
 	}
 	
-	public static boolean borrarPaciente (int paciente) {
+	public static boolean borrar (int paciente) {
 		
 		Connection con = null;
 		boolean estado = true;
@@ -216,18 +216,14 @@ public class Paciente {
 			con = DriverManager.getConnection("jdbc:mysql://localhost/Hospital", "root", "");
 			
 			con.setAutoCommit(false);
-			PreparedStatement pstmt = con.prepareStatement("delete from tratamento where tra_idingreso IN "
-														 + "(Select ing_id from ingreso "
-														 		+ "inner join doente "
-														 			+ "on ing_nhdoente = doe_numhistoria "
-														 		+ "where ing_nhdoente = 467 );");
 			
-			pstmt.execute();
-			
-			pstmt = con.prepareStatement("delete from ingreso where ing_nhdoente = 467;");
-			pstmt.execute();
-			
-			
+			if(existePaciente(con, paciente)) {
+				borrarTratamentos(con, paciente);
+				borrarIngreso(con, paciente);
+				borrarPaciente(con, paciente);
+			} else
+				estado = false;
+			con.commit();
 			
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
@@ -247,10 +243,37 @@ public class Paciente {
 		}
 		
 		return estado;
+	}
+	
+	private static void borrarTratamentos(Connection con, int paciente) throws SQLException {
+//		PreparedStatement pstmt = con.prepareStatement("delete from tratamento where tra_idingreso IN "
+//				 + "(Select ing_id from ingreso "
+//				 		+ "inner join doente "
+//				 			+ "on ing_nhdoente = doe_numhistoria "
+//				 		+ "where ing_nhdoente = ?);");
 		
+		try (PreparedStatement pstmt = con.prepareStatement("DELETE t from tratamento t " +
+				"INNER JOIN ingreso i " +
+				"ON t.tra_IdIngreso = i.ing_id " +
+				"WHERE i.ing_nhDoente = ? ;")){
+
+			pstmt.setInt(1, paciente);
+			pstmt.execute();
+		}
 		
 	}
 	
+	private static void borrarIngreso(Connection con, int paciente) throws SQLException {
+		try (PreparedStatement pstmt = con.prepareStatement("delete from ingreso where ing_nhdoente = ?;")){
+			pstmt.setInt(1, paciente);
+			pstmt.execute();
+		}
+	}
 	
-	
+	private static void borrarPaciente(Connection con, int paciente) throws SQLException {
+		try (PreparedStatement pstmt = con.prepareStatement("delete from doente where doe_numhistoria = ?;")){
+			pstmt.setInt(1, paciente);
+			pstmt.execute();
+		}
+	}
 }
