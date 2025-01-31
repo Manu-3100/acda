@@ -12,7 +12,7 @@ public class Sal {
         return getSal(6);
     }
     
-    public static String getSal(int size){
+    private static String getSal(int size){
         char[] chars = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
                         'a', 'b', 'c', 'd', 'e', 'f'};
         StringBuilder sb = new StringBuilder();
@@ -36,7 +36,7 @@ public class Sal {
 		return null;
 	}
 	
-	private static String getHashRobusto(String texto) {
+	public static String getHashRobusto(String texto) {
 		
 		String sal = String.valueOf(generateSal());
 		String sha1 = getSHA1(texto);
@@ -49,6 +49,18 @@ public class Sal {
 	private static int generateSal() {
 		Random random = new Random();
 		return random.nextInt(100000, 999999);
+	}
+	
+	public static String deSalar(String texto) {
+		
+		String sal = texto.substring(0, 6);
+		String hashRobusto = texto.substring(6);
+		
+		String hashDebil = getSHA1(hashRobusto);
+		String contraseña = getSHA1(sal + hashRobusto);
+		
+		return contraseña;
+		
 	}
 	
 }
