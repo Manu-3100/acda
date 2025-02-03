@@ -1,5 +1,10 @@
 package main;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Scanner;
 
 import capaNegocio.Sal;
@@ -38,12 +43,18 @@ public class Main {
 		String nombre = in.nextLine();
 		System.out.print("Contraseña: ");
 		String contraseña = in.nextLine();
-		Usuario usuario = Usuario.validar(nombre, contraseña);
-		if (usuario != null) {
-			System.out.println(usuario);
-		} else {
-			System.out.println("No se pudo validar el usuario.");
+		Usuario usuario;
+		try {
+			usuario = Usuario.validar(nombre, contraseña);
+			if (usuario != null) {
+				System.out.println(usuario);
+			} else {
+				System.out.println("No se pudo validar el usuario.");
+			}
+		} catch (Exception e) {
+			System.err.println(e.getMessage());
 		}
+		
 	}
 	
 	public static void main(String[] args) {
@@ -57,9 +68,11 @@ public class Main {
 				case 2:
 					validar();
 					break;
+				case 3:
+					System.out.println("salir");
+					break;
 				default:
 					System.out.println("Opción erronea");
-			
 			}
 		
 		} while(!(opc == 3));

@@ -14,7 +14,7 @@ public class Usuario {
 	
 	public Usuario() {	}
 	
-	private Usuario(String nombre, String contraseña) {
+	public Usuario(String nombre, String contraseña) {
 		this.nombre = nombre;
 		this.contraseña = contraseña;
 	}
@@ -63,34 +63,30 @@ public class Usuario {
 		return null;
 	}
 	
-	public static Usuario validar(String nombre, String password) {
+	public static Usuario validar(String nombre, String password) throws Exception{
 		
-		
+			
 		try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost/seguridad", "root", "");
 				PreparedStatement pstmt = con.prepareStatement("SELECT password FROM usuarios WHERE nombre = ?")){
 			
 			pstmt.setString(1, nombre);
 			ResultSet res = pstmt.executeQuery();
-			String salMasPass = "";
 			
 			if (res.next()) {
-				salMasPass = res.getString(1);
-			} else {
-				return null;
-			}
-			String contrasenha = Sal.deSalar(salMasPass);
-			if (contrasenha.equals(password)) {
-				return new Usuario(nombre, password);
-			} else {
-				return null;
-			}
+				String sal = res.getString(1).substring(0, 6);
+				String hashRobustoFinal = res.getString(1).substring(6);
+				if (res.getString(1).equals(sal + hashRobustoFinal))
+					return new Usuario(nombre, sal + hashRobustoFinal);
+				else
+					throw new Exception("Error de validación");
+			} else
+				// no hacer en una aplicacion real, damos pistas a los hackers
+				throw new Exception("Usuario no registrado validación");
 				
 		} catch (SQLException e) {
 			System.err.println(e.getMessage());
 		}
 		return null;
+	
 	}
-	
-	
-
 }

@@ -50,17 +50,4 @@ public class Sal {
 		Random random = new Random();
 		return random.nextInt(100000, 999999);
 	}
-	
-	public static String deSalar(String texto) {
-		
-		String sal = texto.substring(0, 6);
-		String hashRobusto = texto.substring(6);
-		
-		String hashDebil = getSHA1(hashRobusto);
-		String contraseña = getSHA1(sal + hashRobusto);
-		
-		return contraseña;
-		
-	}
-	
 }
