@@ -13,9 +13,9 @@ public class SQLiteDB {
 		public static void main(String[] args) {
 			// Ruta del archivo SQLite (se creará si no existe)
 			String url = "jdbc:sqlite:Estacion.sqlite";
-
+			
 			try (Connection con = DriverManager.getConnection(url); Statement stmt = con.createStatement()) {
-				String sqlCreate = leerArchivos(null);
+				String sqlCreate = leerArchivos();
 				stmt.execute(sqlCreate);
 				String sqlInsert = "INSERT INTO usuarios (nombre) VALUES ('Juan')";
 				stmt.execute(sqlInsert);
@@ -28,9 +28,9 @@ public class SQLiteDB {
 		}
 	}
 	
-	private static String leerArchivos(File ruta) {
+	public static String leerArchivos() {
 		String res = "";
-		try (BufferedReader br = new BufferedReader(new FileReader(ruta))) {
+		try (BufferedReader br = new BufferedReader(new FileReader("D:\\ferdebman\\2DAM\\acda\\basesDatos\\estacionTren\\Cargadatosbase.sql"))) {
 			String linea = "";
 			while ((linea = br.readLine()) != null) {
 				res += linea;
@@ -40,10 +40,6 @@ public class SQLiteDB {
 		} catch (IOException e) {
 			System.err.println(e.getMessage());
 		}
-		
 		return res;
-		
 	}
-	
-
 }
