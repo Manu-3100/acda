@@ -36,8 +36,7 @@ public class Customer {
 	
 	@Override
 	public String toString() {
-		return "Customer [CustomerID=" + customerID + ", companyName=" + companyName + ", contactName=" + contactName
-				+ "]";
+		return "Customer CustomerID=" + customerID + ", companyName=" + companyName + ", contactName=" + contactName;
 	}
 
 	public Customer() {}
@@ -74,5 +73,12 @@ public class Customer {
 			
 			return true;
 		}
+	}
+	
+	public boolean borrar() {
+		String sql = 
+				" DELETE FROM CUSTOMERS "
+				+ "WHERE CustomerId = '" + this.customerID + "' ";
+		return dao.ejecutarDML(sql) > 0;	
 	}
 }

@@ -7,6 +7,7 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class DAO {
@@ -65,6 +66,7 @@ public class DAO {
 			filasAfectadas = pstmt.executeUpdate(sql);
 			
 		} catch (SQLException e) {
+			System.err.println("error en la dml");
 			System.err.println(e.getMessage());
 		}
 		
@@ -73,6 +75,7 @@ public class DAO {
 	
 	/*
 	 * DQL: Lenguaje de consulta de datos
+	 * 
 	 */
 
 	public List<Object[]> leer(String sql) {
@@ -83,15 +86,26 @@ public class DAO {
 				Statement stmt = con.createStatement();){
 			
 			ResultSet rs = stmt.executeQuery(sql);
+			
 			ResultSetMetaData rsMetaData = rs.getMetaData();
 			
-			while (rs.next()) {
-				
-				
-				res.add(null);
+			fila = new Object[rsMetaData.getColumnCount()];
+			
+			for (int i = 0; i < fila.length; i++) {
+				fila[i] = rsMetaData.getColumnLabel(i + 1);
+			}
+			res.add(fila);
+			
+		  	while (rs.next()) {
+		  		fila = new Object[rsMetaData.getColumnCount()];
+				for (int i = 0; i < fila.length; i++) {
+					fila[i] = rs.getObject(i + 1);
+				}
+				res.add(fila);
 			}
 
 		} catch (SQLException e) {
+			System.err.println("error en el metodo leer");
 			System.err.println(e.getMessage());			
 		}
 		return res;
