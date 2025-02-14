@@ -3,15 +3,9 @@
 
         <!-- Configuración de conexión -->
         <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
-        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/NorthWind</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/Northwind</property>
         <property name="hibernate.connection.username">root</property>
         <property name="hibernate.connection.password"></property>
-
-        <!-- Dialecto de Hibernate -->
-        <property name="hibernate.dialect">org.hibernate.dialect.MySQL8Dialect</property>
-
-        <!-- Generación automática de tablas -->
-        <property name="hibernate.hbm2ddl.auto">update</property>
 
 		<!-- Mapear las clases -->
         <mapping class="pojos.Category"/>
