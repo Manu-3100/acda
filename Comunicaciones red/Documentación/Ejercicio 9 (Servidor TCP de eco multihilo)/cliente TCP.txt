@@ -1,0 +1,2 @@
+Se usará el cliente del ejercicio 8
+Cliente TCP 

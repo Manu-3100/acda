@@ -11,8 +11,8 @@ CREATE TABLE RutaFerroviaria (
     idCiudadInicio INTEGER NOT NULL,
     idCiudadFin INTEGER NOT NULL,
     distancia_km REAL NOT NULL, 
-    CONSTRAINT FK_RutaFerroviaria_CiudadInicio FOREIGN KEY (idCiudadInicio) REFERENCES Ciudad(idCiudad),
-    CONSTRAINT FK_RutaFerroviaria_CiudadFin FOREIGN KEY (idCiudadFin) REFERENCES Ciudad(idCiudad),
+    CONSTRAINT FK_RutaFerroviaria_CiudadInicio FOREIGN KEY (idCiudadInicio) REFERENCES Ciudades(idCiudad),
+    CONSTRAINT FK_RutaFerroviaria_CiudadFin FOREIGN KEY (idCiudadFin) REFERENCES Ciudades(idCiudad),
     CONSTRAINT CHK_Ciudades_Distintas CHECK (idCiudadInicio <> idCiudadFin)
 );
 
@@ -28,8 +28,8 @@ CREATE TABLE Tren_Ruta (
     horario_salida TEXT NOT NULL, -- SQLite no tiene TIME, se usa TEXT en formato 'HH:MM:SS'
     horario_llegada TEXT NOT NULL,
     PRIMARY KEY (idTren, idRuta),
-    CONSTRAINT FK_TrenRuta_Tren FOREIGN KEY (idTren) REFERENCES Tren(idTren),
-    CONSTRAINT FK_TrenRuta_Ruta FOREIGN KEY (idRuta) REFERENCES RutaFerroviaria(idRuta)
+    CONSTRAINT FK_TrenRuta_Tren FOREIGN KEY (idTren) REFERENCES Trenes(idTren),
+    CONSTRAINT FK_TrenRuta_Ruta FOREIGN KEY (idRuta) REFERENCES RutaFerroviarias(idRuta)
 );
 
 CREATE TABLE Cliente (
@@ -55,6 +55,14 @@ CREATE TABLE Billete (
 	idTren INTEGER NOT NULL,
     fecha_viaje TEXT NOT NULL, -- La fecha del viaje en formato 'YYYY-MM-DD'
     asiento INTEGER NOT NULL, -- El número de asiento asignado
+<<<<<<< HEAD
     CONSTRAINT FK_Billete_Cliente FOREIGN KEY (idCliente) REFERENCES Cliente(idCliente),  -- Clave foránea a Cliente
     CONSTRAINT FK_Billete_Viaje FOREIGN KEY (idRuta, idTren, fecha_viaje) REFERENCES Viaje(idRuta, idtren, fecha_viaje)  -- Clave foránea a Viaje
 );
+=======
+    CONSTRAINT FK_Billete_Cliente FOREIGN KEY (idCliente) REFERENCES Clientes(idCliente),  -- Clave foránea a Cliente
+    CONSTRAINT FK_Billete_Viaje FOREIGN KEY (idRuta, idTren, fecha_viaje) REFERENCES Viajes(idRuta, idTren, fecha_viaje)  -- Clave foránea a Viaje
+);
+
+
+>>>>>>> f30790d46ebec001a25782c80a5622b98cca3e55
