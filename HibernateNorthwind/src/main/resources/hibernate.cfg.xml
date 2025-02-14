@@ -7,6 +7,9 @@
         <property name="hibernate.connection.username">root</property>
         <property name="hibernate.connection.password"></property>
 
+		<property name="hibernate.show_sql">true</property>
+		<property name="hibernate.format_sql">true</property>
+
 		<!-- Mapear las clases -->
         <mapping class="pojos.Category"/>
         <mapping class="pojos.Customer"/>

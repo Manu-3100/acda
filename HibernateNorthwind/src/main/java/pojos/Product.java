@@ -1,7 +1,13 @@
 package pojos;
 
 import java.util.List;
+
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+
 import jakarta.persistence.*;
+import util.HibernateUtil;
 
 @Entity
 @Table(name = "Products")
@@ -100,9 +106,27 @@ public class Product {
 
 	@Override
 	public String toString() {
-		return   "Product => " + productID + "\n\t" + "productName =>" + productName + "\n\t" + "unitPrice => " + unitPrice
-				+ "\n\t" + "unitsInStock=" + unitsInStock;
+		return   "Product => " + productID + "\n\t" + "productName => " + productName + "\n\t" + "unitPrice => " + unitPrice + " €"
+				+ "\n\t" + "unitsInStock => " + unitsInStock;
 	}
 	
-	
+	public static Product get(String nombre) {
+		Product product = null;
+		
+		try (SessionFactory factory = HibernateUtil.getSessionFactory(); 
+				Session session = factory.openSession()) {
+			
+			product = (Product) session
+					.createQuery("from Product where productName = :valor")
+					.setParameter("valor", nombre)
+					.uniqueResult();
+			
+		} catch (HibernateException e) {
+			
+		}
+		
+		
+		return product;
+		
+	}
 }

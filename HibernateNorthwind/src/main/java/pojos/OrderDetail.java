@@ -99,13 +99,15 @@ public class OrderDetail {
 	}
 	
 	public static OrderDetail get(Integer orderID, Integer productId) {
-		
+		OrderDetail orderDetail = null;
 		try (SessionFactory factory = HibernateUtil.getSessionFactory();
 				Session session = factory.openSession()) {
+			
+			orderDetail = session.get(OrderDetail.class,new OrderDetailId(orderID, productId));
 			
 		} catch (HibernateException e) {
 			System.out.println(e.getMessage());
 		}
-		
+		return orderDetail;
 	}
 }
