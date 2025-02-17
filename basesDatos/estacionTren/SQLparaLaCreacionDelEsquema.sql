@@ -1,12 +1,12 @@
 PRAGMA foreign_keys = ON; -- Activa claves foráneas. Desactivadas por defecto.
 
-CREATE TABLE Ciudades (
+CREATE TABLE Ciudad (
     idCiudad INTEGER PRIMARY KEY AUTOINCREMENT,
     nombre TEXT NOT NULL,
     pais TEXT NOT NULL
 );
 
-CREATE TABLE RutaFerroviarias (
+CREATE TABLE RutaFerroviaria (
     idRuta INTEGER PRIMARY KEY AUTOINCREMENT,
     idCiudadInicio INTEGER NOT NULL,
     idCiudadFin INTEGER NOT NULL,
@@ -16,7 +16,7 @@ CREATE TABLE RutaFerroviarias (
     CONSTRAINT CHK_Ciudades_Distintas CHECK (idCiudadInicio <> idCiudadFin)
 );
 
-CREATE TABLE Trenes (
+CREATE TABLE Tren (
     idTren INTEGER PRIMARY KEY AUTOINCREMENT,
     modelo TEXT NOT NULL,
     capacidad INTEGER NOT NULL
@@ -32,7 +32,7 @@ CREATE TABLE Tren_Ruta (
     CONSTRAINT FK_TrenRuta_Ruta FOREIGN KEY (idRuta) REFERENCES RutaFerroviarias(idRuta)
 );
 
-CREATE TABLE Clientes (
+CREATE TABLE Cliente (
     idCliente INTEGER PRIMARY KEY AUTOINCREMENT,
     nombre TEXT NOT NULL,
     apellido TEXT NOT NULL,
@@ -40,7 +40,7 @@ CREATE TABLE Clientes (
     telefono TEXT
 );
 
-CREATE TABLE Viajes (
+CREATE TABLE Viaje (
     idRuta INTEGER NOT NULL,
     idTren INTEGER NOT NULL,
     fecha_viaje TEXT NOT NULL, -- La fecha del viaje en formato 'YYYY-MM-DD'
@@ -48,16 +48,21 @@ CREATE TABLE Viajes (
     CONSTRAINT FK_Viaje_TrenRuta FOREIGN KEY (idTren, idRuta) REFERENCES Tren_Ruta(idTren, idRuta)
 );
 
-
-CREATE TABLE Billetes (
+CREATE TABLE Billete (
     idBillete INTEGER PRIMARY KEY AUTOINCREMENT,
     idCliente INTEGER NOT NULL,
     idRuta INTEGER NOT NULL,
 	idTren INTEGER NOT NULL,
     fecha_viaje TEXT NOT NULL, -- La fecha del viaje en formato 'YYYY-MM-DD'
     asiento INTEGER NOT NULL, -- El número de asiento asignado
+<<<<<<< HEAD
+    CONSTRAINT FK_Billete_Cliente FOREIGN KEY (idCliente) REFERENCES Cliente(idCliente),  -- Clave foránea a Cliente
+    CONSTRAINT FK_Billete_Viaje FOREIGN KEY (idRuta, idTren, fecha_viaje) REFERENCES Viaje(idRuta, idtren, fecha_viaje)  -- Clave foránea a Viaje
+);
+=======
     CONSTRAINT FK_Billete_Cliente FOREIGN KEY (idCliente) REFERENCES Clientes(idCliente),  -- Clave foránea a Cliente
     CONSTRAINT FK_Billete_Viaje FOREIGN KEY (idRuta, idTren, fecha_viaje) REFERENCES Viajes(idRuta, idTren, fecha_viaje)  -- Clave foránea a Viaje
 );
 
 
+>>>>>>> f30790d46ebec001a25782c80a5622b98cca3e55

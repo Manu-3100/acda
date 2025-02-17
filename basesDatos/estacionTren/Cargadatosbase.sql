@@ -1,4 +1,4 @@
-INSERT INTO Ciudades (nombre, pais) VALUES
+INSERT INTO Ciudad (nombre, pais) VALUES
 ('Madrid', 'España'),
 ('Barcelona', 'España'),
 ('Valencia', 'España'),
@@ -21,7 +21,7 @@ INSERT INTO Ciudades (nombre, pais) VALUES
 ('Vigo', 'España');
 
 
-INSERT INTO RutaFerroviarias (idCiudadInicio, idCiudadFin, distancia_km) VALUES
+INSERT INTO RutaFerroviaria (idCiudadInicio, idCiudadFin, distancia_km) VALUES
 (1, 2, 600.5),  -- Madrid ↔ Barcelona
 (2, 3, 1030.7), -- Barcelona ↔ Valencia
 (3, 4, 350.3),  -- Valencia ↔ Sevilla
@@ -34,7 +34,7 @@ INSERT INTO RutaFerroviarias (idCiudadInicio, idCiudadFin, distancia_km) VALUES
 (9, 11, 120.9); -- Granada ↔ Palma de Mallorca
 
 
-INSERT INTO Trenes (modelo, capacidad) VALUES
+INSERT INTO Tren (modelo, capacidad) VALUES
 ('AVE', 200),
 ('Talgo', 150),
 ('Euromed', 180),
@@ -60,7 +60,7 @@ INSERT INTO Tren_Ruta (idTren, idRuta, horario_salida, horario_llegada) VALUES
 (10, 10, '12:00', '16:30'); 
 
 
-INSERT INTO Clientes (nombre, apellido, email, telefono) VALUES
+INSERT INTO Cliente (nombre, apellido, email, telefono) VALUES
 ('Juan', 'Pérez', 'juan.perez@example.com', '123456789'),
 ('Ana', 'Gómez', 'ana.gomez@example.com', '987654321'),
 ('Carlos', 'López', 'carlos.lopez@example.com', '555123456'),
@@ -72,7 +72,7 @@ INSERT INTO Clientes (nombre, apellido, email, telefono) VALUES
 ('José', 'García', 'jose.garcia@example.com', '888123456'),
 ('Sofía', 'Hernández', 'sofia.hernandez@example.com', '888654321');
 
-INSERT INTO Viajes (idRuta, idTren, fecha_viaje) VALUES
+INSERT INTO Viaje (idRuta, idTren, fecha_viaje) VALUES
 (1, 1, '2025-02-10'),  -- Ruta 1, fecha 2025-02-10, Tren 1
 (2, 2, '2025-02-11'),  -- Ruta 2, fecha 2025-02-11, Tren 2
 (3, 3, '2025-02-12'),  -- Ruta 3, fecha 2025-02-12, Tren 3
