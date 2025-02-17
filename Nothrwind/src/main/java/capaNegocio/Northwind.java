@@ -389,13 +389,11 @@ public class Northwind {
 		try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost/Northwind", "root", "")) {
 			DatabaseMetaData metadata = con.getMetaData();
 			ResultSet rs = metadata.getColumns("Northwind", null, tabla, null);
-			
 			while (rs.next()) {
 				System.out.println(
 						rs.getString("COLUMN_NAME") + " " +
 						rs.getString("TYPE_NAME") + " " +
 						rs.getInt("COLUMN_SIZE") );
-				
 				if (rs.getInt("NULLABLE") == ResultSetMetaData.columnNoNulls) {
 					System.out.println("No admite nulos");
 				}
@@ -406,7 +404,6 @@ public class Northwind {
 					System.out.println("Se desconoce si admite nulos");
 				}
 			}
-			
 		} catch (SQLException e) {
 			System.err.println(e.getMessage());
 		}
