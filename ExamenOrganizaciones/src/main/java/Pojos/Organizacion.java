@@ -122,6 +122,8 @@ public class Organizacion {
 			deleteCountry(con, abrOrg1);
 			deleteCountry(con, abrOrg2);
 
+			con.commit();
+			
 		} catch (SQLException e) {
 			orgRes = null;
 			try {
