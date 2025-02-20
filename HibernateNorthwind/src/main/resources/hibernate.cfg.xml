@@ -23,5 +23,6 @@
         <mapping class="pojos.Shipper"/>
         <mapping class="pojos.Supplier"/>
         <mapping class="pojos.Territory"/>
+        
     </session-factory>
 </hibernate-configuration>
