@@ -57,6 +57,7 @@ public class Customer {
 		
 		try (Connection con = Conexion.getConexion();
 				PreparedStatement pstmt = con.prepareStatement("Select companyName, contactName " + "from customers " + "where country=?");) {
+			
 			pstmt.setString(1, pais);
 			try (ResultSet rs = pstmt.executeQuery()){
 				while (rs.next()) {
