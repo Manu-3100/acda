@@ -1,0 +1,23 @@
+<hibernate-configuration>
+    <session-factory>
+
+        <!-- Configuración de conexión -->
+        <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/airport</property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.connection.password"></property>
+
+		<property name="hibernate.show_sql">true</property>
+		<property name="hibernate.format_sql">true</property>
+
+		<!-- Mapear las clases -->
+        <mapping class="pojos.Address"/>
+        <mapping class="pojos.Airport"/>
+        <mapping class="pojos.Country"/>
+        <mapping class="pojos.Customer"/>
+        <mapping class="pojos.FlightExecution"/>
+        <mapping class="pojos.FlightExecutionId"/>
+        <mapping class="pojos.Plane"/>
+        <mapping class="pojos.Reservation"/>
+    </session-factory>
+</hibernate-configuration>
