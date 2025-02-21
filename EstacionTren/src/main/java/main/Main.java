@@ -1,15 +1,13 @@
 package main;
 
-<<<<<<< HEAD
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
 import capaNegocio.SQLiteDB;
-=======
+
 import capaNegocio.Trenes;
->>>>>>> f30790d46ebec001a25782c80a5622b98cca3e55
 
 public class Main {
 
