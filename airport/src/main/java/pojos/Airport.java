@@ -22,6 +22,32 @@ public class Airport {
     @ManyToOne
     @JoinColumn(name = "AddressID", nullable = false)
     private Address address;
+
+	public String getIcaoCode() {
+		return icaoCode;
+	}
+
+	public void setIcaoCode(String icaoCode) {
+		this.icaoCode = icaoCode;
+	}
+
+	public String getAirportName() {
+		return airportName;
+	}
+
+	public void setAirportName(String airportName) {
+		this.airportName = airportName;
+	}
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+    
+    
     
     
 }

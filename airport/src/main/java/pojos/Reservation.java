@@ -1,7 +1,5 @@
 package pojos;
 
-import java.util.Date;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -33,11 +31,8 @@ public class Reservation {
 
     @Column(name = "Comment", length = 1000)
     private String comment;
-    
 
 
-    
-    
-    
+
     
 }

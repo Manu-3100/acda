@@ -33,5 +33,58 @@ public class FlightExecution {
 
     @OneToMany(mappedBy = "flightExecution")
     private List<Reservation> reservations;
+
+	public FlightExecutionId getId() {
+		return id;
+	}
+
+	public void setId(FlightExecutionId id) {
+		this.id = id;
+	}
+
+	public Plane getPlane() {
+		return plane;
+	}
+
+	public void setPlane(Plane plane) {
+		this.plane = plane;
+	}
+
+	public Airport getOrigin() {
+		return origin;
+	}
+
+	public void setOrigin(Airport origin) {
+		this.origin = origin;
+	}
+
+	public Airport getDestination() {
+		return destination;
+	}
+
+	public void setDestination(Airport destination) {
+		this.destination = destination;
+	}
+
+	public Integer getDurationMinutes() {
+		return durationMinutes;
+	}
+
+	public void setDurationMinutes(Integer durationMinutes) {
+		this.durationMinutes = durationMinutes;
+	}
+
+	public List<Reservation> getReservations() {
+		return reservations;
+	}
+
+	public void setReservations(List<Reservation> reservations) {
+		this.reservations = reservations;
+	}
+    
+    
+    
+    
+    
 }
 

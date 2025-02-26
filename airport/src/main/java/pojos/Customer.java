@@ -5,6 +5,8 @@ import java.util.List;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
@@ -15,15 +17,16 @@ public class Customer {
 	@Column(name = "ID")
     private Integer id;
 	
-	@Column(name = "LastName", length = 50)
+	@Column(name = "LastName", nullable = false, length = 50)
     private String lastName;
 	
-	@Column(name = "FirstName", length = 50)
+	@Column(name = "FirstName", nullable = false, length = 50)
     private String firstName;
 
-	@Column(name = "Address", length = 50)
+	@ManyToOne
+	@JoinColumn(name = "AddressID", nullable = false)
     private Address address;
 
-	@OneToMany(mappedBy = "CustomerID")
+	@OneToMany(mappedBy = "customer")
     private List<Reservation> reservations;
 }

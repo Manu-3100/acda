@@ -20,7 +20,6 @@ public class HibernateUtil {
 
 	// Obtener la SessionFactory
 	public static SessionFactory getSessionFactory() {
-		
 		if(sessionFactory.isClosed())
 			sessionFactory = buildSessionFactory();
 		return sessionFactory;
