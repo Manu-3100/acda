@@ -116,15 +116,14 @@ public class Product {
 		try (SessionFactory factory = HibernateUtil.getSessionFactory(); 
 				Session session = factory.openSession()) {
 			
-			product = (Product) session
-					.createQuery("from Product where productName = :valor")
+			product = session
+					.createQuery("from Product where productName = :valor", Product.class)
 					.setParameter("valor", nombre)
 					.uniqueResult();
 			
 		} catch (HibernateException e) {
-			
+			System.err.println(e.getMessage());
 		}
-		
 		
 		return product;
 		

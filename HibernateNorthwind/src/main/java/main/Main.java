@@ -1,5 +1,6 @@
 package main;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.HibernateException;
@@ -15,14 +16,36 @@ public class Main {
 
 	public static void main(String[] args) {
 
-		try (SessionFactory factory = HibernateUtil.getSessionFactory(); Session session = factory.openSession()) {
+		try (SessionFactory factory = HibernateUtil.getSessionFactory(); 
+				Session session = factory.openSession()) {
 
-			Customer customer = session.get(Customer.class, "ALFKI");
-			customer.getPedidos().forEach(System.out::println);
-			
+			List<Object[]> res = session.createQuery("""
+					from Product, Supplier
+					""", Object[].class).list();
+
 		} catch (Exception e) {
 			System.err.println(e.getMessage());
 		}
+
+		// ejercicio 20
+//		
+//		List<Customer> customers = Customer.getCustomers("Spain");
+//		customers.forEach(System.out::println);
+//		
+//		
+//		
+		// ejercicio 19
+//		customers = Customer.getCustomers(110_000);
+//		customers.forEach(System.out::println);
+//		
+//		try (SessionFactory factory = HibernateUtil.getSessionFactory(); Session session = factory.openSession()) {
+//
+//			Customer customer = session.get(Customer.class, "ALFKI");
+//			customer.getPedidos().forEach(System.out::println);
+//			
+//		} catch (Exception e) {
+//			System.err.println(e.getMessage());
+//		}
 
 //		Customer c = new Customer();
 //		c.setCompanyName("Demoliciones Nadir");
@@ -52,9 +75,6 @@ public class Main {
 //			}
 //			else
 //				System.out.println("No se encontró al cliente");
-//			
-//			
-//			
 		/**
 		 * Impresón del nombre de los empleados que atendieron al cliente al hacer cada
 		 * uno de los pedidos.

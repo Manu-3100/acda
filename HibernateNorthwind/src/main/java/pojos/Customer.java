@@ -7,6 +7,8 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
+
 
 import jakarta.persistence.*;
 import util.HibernateUtil;
@@ -116,8 +118,9 @@ public class Customer {
 		try (SessionFactory factory = HibernateUtil.getSessionFactory();
 				Session session = factory.openSession()) {
 			tx = session.beginTransaction();
-			//tx.begin();
+			
 			session.save(this);
+			
 			tx.commit();
 		} catch (HibernateException e) {
 			System.out.println(e.getMessage());
@@ -125,10 +128,71 @@ public class Customer {
 		}
 	}
 	
+	public static List<Customer> getCustomers(String pais){
+		
+		List<Customer> res = new ArrayList<Customer>();
+		
+		try (SessionFactory factory = HibernateUtil.getSessionFactory();
+			Session session = factory.openSession()) {
+			
+			
+			// esto esta deprecated
+//			res = session.createQuery("""
+//					from Customer c 
+//					where c.country = :pais """)
+//					.setParameter("pais", pais)
+//					.list();
+			
+			// asi esta bien
+			res = session.createQuery("""
+					from Customer c 
+					where c.country = :pais """, Customer.class)
+					.setParameter("pais", pais)
+					.list();
+			
+		} catch (HibernateException e) {
+			System.out.println(e.getMessage());
+		}
+		
+		
+		return res.size() != 0 ? res : null;
+		
+	}
+	
+	
+	// ejercicio 19
+// este suppresWarning es para que no me salte el aviso de deprecado del createQuery
+	@SuppressWarnings({ "deprecation", "unchecked" })
+	public static List<Customer> getCustomers(double importe){
+		
+		List<Customer> res = new ArrayList<Customer>();
+		
+		try (SessionFactory factory = HibernateUtil.getSessionFactory();
+			Session session = factory.openSession()) {
+			
+			res = session.createQuery("""
+					from Customer c 
+					join c.orders o
+					join o.orderDetails d
+					group by c
+					having sum(d.total) > :valor """)
+					.setParameter("valor", importe)
+					.list();
+			
+		} catch (HibernateException e) {
+			System.out.println(e.getMessage());
+		}
+		
+		
+		return res.size() != 0 ? res : null;
+		
+	}
+	
 	// metodo innecesario
 	// dada una instancia del cliente ya se dispone de sus pedidos
-	public List<Order> getPedidos(){
-		
+	// este suppresWarning es para que no me salte el aviso de deprecado del createQuery
+	@SuppressWarnings({ "deprecation", "unchecked" })
+ 	public List<Order> getPedidos(){
 		List<Order> res = new ArrayList<Order>();
 		Transaction tx = null;
 		try (SessionFactory factory = HibernateUtil.getSessionFactory();
@@ -148,4 +212,10 @@ public class Customer {
 		}
 		return res;
 	}
+	
+
 }
+
+
+
+
