@@ -202,7 +202,7 @@ CREATE TABLE `reservation` (
   KEY `Matrikelnummer` (`CustomerID`),
   KEY `FlightNo` (`FlightNo`,`DeparTime`),
   CONSTRAINT `reservation_ibfk_1` FOREIGN KEY (`CustomerID`) REFERENCES `customer` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `reservation_ibfk_2` FOREIGN KEY (`FlightNo`, `DeparTime`) REFERENCES `flightexecution` (`FlightNo`, `DeparTime`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `reservatioflightexecutionn_ibfk_2` FOREIGN KEY (`FlightNo`, `DeparTime`) REFERENCES `flightexecution` (`FlightNo`, `DeparTime`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 

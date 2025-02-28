@@ -1,6 +1,13 @@
 package pojos;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.List;
+
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.EmbeddedId;
@@ -9,6 +16,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import util.HibernateUtil;
 
 @Entity
 @Table(name = "flightexecution")
@@ -82,6 +90,31 @@ public class FlightExecution {
 		this.reservations = reservations;
 	}
     
+	public int getPlazasLibres() {
+		int plazasOcupadas = 0;
+		
+		for (Reservation res : this.reservations) {
+			plazasOcupadas += res.getSeats();
+		}
+		return this.plane.getNoOfSeats() - plazasOcupadas;
+	}
+	
+	
+	public static FlightExecution get(String flightNo, LocalDateTime deparTime) {
+		FlightExecution  res = null;
+		SessionFactory factory = HibernateUtil.getSessionFactory();
+		
+		try (Session session = factory.openSession()) {
+
+				res = session.get(FlightExecution.class, new FlightExecutionId(flightNo, Timestamp.valueOf(deparTime)));
+
+			} catch (HibernateException e) {
+			System.err.println(e.getMessage());
+		}
+		
+		return res;
+
+	}
     
     
     

@@ -13,15 +13,33 @@ public class Main {
 
 	public static void main(String[] args) {
 
-//		Ejercicio 3
-		List<Object[]> lista = Plane.getEstadistica("Airbus");
+//		Ejercicio 2
+		// Customer cliente = Customer.get(1);
+		Customer cliente = null;
+		
+		SessionFactory factory = HibernateUtil.getSessionFactory();
+		
+		try (Session session = factory.openSession()) {
 
-		for(Object[] datos: lista) {
-			System.out.print( ((Plane) datos[0]).getPlaneName() + " ");
-			System.out.print( datos[1] + " ");
-			System.out.print( datos[2] + " ");
-			System.out.println();
+			cliente = session.get(Customer.class, 15943155);
+
+		} catch (Exception e) {
+			System.err.println(e.getMessage());
+			e.printStackTrace();
 		}
+		
+		System.out.println(cliente);
+		
+		
+//		Ejercicio 3
+//		List<Object[]> lista = Plane.getEstadistica("Airbus");
+//
+//		for(Object[] datos: lista) {
+//			System.out.print( ((Plane) datos[0]).getPlaneName() + " ");
+//			System.out.print( datos[1] + " ");
+//			System.out.print( datos[2] + " ");
+//			System.out.println();
+//		}
 		
 //		Ejercicio 4
 //		Plane avion = Plane.get(1);
