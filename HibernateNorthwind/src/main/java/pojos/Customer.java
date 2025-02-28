@@ -198,11 +198,13 @@ public class Customer {
 		try (SessionFactory factory = HibernateUtil.getSessionFactory();
 				Session session = factory.openSession()) {
 			
-			res = session.createQuery(
-					"from Order " +
-					"where customer = :cliente")
+			res = session.createQuery("""
+					from Order where customer = :cliente
+					""", Order.class)
 					.setParameter("cliente", this)
 					.list();
+			
+			
 			
 		} catch (HibernateException e) {
 			System.out.println(e.getMessage());
